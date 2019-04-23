@@ -31,7 +31,7 @@ public class RoleController {
         return "success";
     }
 
-    @RequestMapping("role/findonerole")
+    @RequestMapping("/role/findonerole")
     public Role findOne(Integer id) {
         return roleService.findById(id);
     }
