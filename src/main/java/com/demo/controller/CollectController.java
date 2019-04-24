@@ -14,7 +14,7 @@ import java.util.List;
 public class CollectController {
 
     @Autowired
-    CollectService collectService;
+    private CollectService collectService;
 
     @RequestMapping("/reception/addCollect")
     public String addCollect(Collect collect) {

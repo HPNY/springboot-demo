@@ -88,8 +88,8 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="/Global.js"></script>
 <script>
-
     var nowpage = 0;
 
     $.ajax({
@@ -151,29 +151,6 @@
             '<td><a onclick="resetUser(' + id + ')">重置密码</a></td></tr>'
 
         $("table").append(text);
-    }
-
-    var pageCount = document.getElementById("pageCount");
-    var total = document.getElementById("total");
-
-    function judge() {
-        if (pageCount.innerHTML != "1") {
-            document.getElementById("Previous").disabled = false;
-        } else {
-            document.getElementById("Previous").disabled = "disabled";
-        }
-        if (pageCount.innerText == total.innerText) {
-            document.getElementById("Next").disabled = "disabled";
-        } else {
-            document.getElementById("Next").disabled = false;
-        }
-    }
-
-    if (pageCount.innerHTML == "1") {
-        document.getElementById("Previous").disabled = "disabled";
-    }
-    if (pageCount.innerText == total.innerText) {
-        document.getElementById("Next").disabled = "disabled";
     }
 
     function deleteUser(i) {
