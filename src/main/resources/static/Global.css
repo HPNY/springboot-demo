@@ -27,14 +27,54 @@ body {
     border: 1px solid #ccc;
     height: 500px;
 }
+
 .starter-template {
     padding: 40px 15px;
     text-align: center;
 }
+
 li {
     list-style: none;
 }
 
 a {
     text-decoration: none;
+}
+
+.detail {
+    list-style: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.model_detail {
+    list-style: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.inputfile {
+    opacity: 0;
+}
+
+.login {
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 250px;
+    width: 800px;
+    height: 500px
+}
+
+.login-title {
+    margin-bottom: 70px;
+    padding-top: 70px
+}
+
+.login-input {
+    margin: 40px 60px;
+}
+
+.login-button {
+    margin: 10px 30px;
 }
