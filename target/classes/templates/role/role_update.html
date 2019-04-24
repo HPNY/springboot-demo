@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8"/>
     <title>更新角色</title>
+    <link rel="stylesheet" type="text/css" href="/Global.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        body {
-            padding-top: 50px;
-        }
+    <!--<style type="text/css">-->
+        <!--body {-->
+            <!--padding-top: 50px;-->
+        <!--}-->
 
-        .starter-template {
-            padding: 40px 15px;
-            text-align: center;
-        }
-    </style>
+        <!--.starter-template {-->
+            <!--padding: 40px 15px;-->
+            <!--text-align: center;-->
+        <!--}-->
+    <!--</style>-->
     <script>
         function checkNull() {
             /*判断是否有空内容*/
@@ -99,7 +100,7 @@
     })
 
     $.ajax({
-        url:'role/findonerole',
+        url:'/role/findonerole',
         type:'GET',
         data: {
             id: $("#roleId").val(),
