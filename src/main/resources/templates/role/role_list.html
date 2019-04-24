@@ -93,7 +93,6 @@
     </form>
 </div>
 </body>
-<script type="text/javascript" src="/Global.js"></script>
 <script>
 
     var nowpage = 0;
@@ -158,6 +157,29 @@
             '<td><a href="/role/findone/?id=' + id + '">修改</a>/<a onclick="deleteRole(' + id + ')">删除</a></td></tr>'
 
         $("table").append(text);
+    }
+
+    var pageCount = document.getElementById("pageCount");
+    var total = document.getElementById("total");
+
+    function judge() {
+        if (pageCount.innerHTML != "1") {
+            document.getElementById("Previous").disabled = false;
+        } else {
+            document.getElementById("Previous").disabled = "disabled";
+        }
+        if (pageCount.innerText == total.innerText) {
+            document.getElementById("Next").disabled = "disabled";
+        } else {
+            document.getElementById("Next").disabled = false;
+        }
+    }
+
+    if (pageCount.innerHTML == "1") {
+        document.getElementById("Previous").disabled = "disabled";
+    }
+    if (pageCount.innerText == total.innerText) {
+        document.getElementById("Next").disabled = "disabled";
     }
 
     function deleteRole(i) {

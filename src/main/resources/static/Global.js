@@ -97,32 +97,3 @@ function initFeb() {
         }
     }
 }
-
-var pageCount = document.getElementById("pageCount");
-var total = document.getElementById("total");
-
-function judge() {
-    if (pageCount.innerHTML != "1") {
-        document.getElementById("Previous").disabled = false;
-    } else {
-        document.getElementById("Previous").disabled = "disabled";
-    }
-    if (pageCount.innerText == total.innerText) {
-        document.getElementById("Next").disabled = "disabled";
-    } else {
-        document.getElementById("Next").disabled = false;
-    }
-    if (total.innerHTML == "0") {
-        document.getElementById("Next").disabled = "disabled";
-    }
-}
-
-if (pageCount.innerHTML == "1") {
-    document.getElementById("Previous").disabled = "disabled";
-}
-if (total.innerHTML == "0") {
-    document.getElementById("Next").disabled = "disabled";
-}
-if (pageCount.innerText == total.innerText) {
-    document.getElementById("Next").disabled = "disabled";
-}

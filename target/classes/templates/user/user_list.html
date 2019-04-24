@@ -4,10 +4,19 @@
 <head>
     <meta charset="utf-8">
     <title>用户管理</title>
-    <link rel="stylesheet" type="text/css" href="/Global.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            padding-top: 50px;
+        }
+
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -88,7 +97,6 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="/Global.js"></script>
 <script>
 
     var nowpage = 0;
@@ -154,7 +162,28 @@
         $("table").append(text);
     }
 
+    var pageCount = document.getElementById("pageCount");
+    var total = document.getElementById("total");
 
+    function judge() {
+        if (pageCount.innerHTML != "1") {
+            document.getElementById("Previous").disabled = false;
+        } else {
+            document.getElementById("Previous").disabled = "disabled";
+        }
+        if (pageCount.innerText == total.innerText) {
+            document.getElementById("Next").disabled = "disabled";
+        } else {
+            document.getElementById("Next").disabled = false;
+        }
+    }
+
+    if (pageCount.innerHTML == "1") {
+        document.getElementById("Previous").disabled = "disabled";
+    }
+    if (pageCount.innerText == total.innerText) {
+        document.getElementById("Next").disabled = "disabled";
+    }
 
     function deleteUser(i) {
         $.ajax({

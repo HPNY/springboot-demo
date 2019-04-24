@@ -4,11 +4,31 @@
 <head>
     <meta charset="utf-8">
     <title>主页</title>
-    <link rel="stylesheet" type="text/css" href="/Global.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            padding-top: 50px;
+        }
+
+        .footer > .container {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            /* Set the fixed height of the footer here */
+            height: 60px;
+            line-height: 60px;
+            /* Vertically center the text there */
+            background-color: #f5f5f5;
+        }
+    </style>
 </head>
 
 <body>
@@ -109,7 +129,6 @@
         <span class="text-muted">Place sticky footer content here.</span>
     </div>
 </footer>
-<script type="text/javascript" src="/Global.js"></script>
 <script>
 
     var nowpage = 0;
@@ -339,6 +358,33 @@
         $("#commentTable").append(text);
     }
 
+    var pageCount = document.getElementById("pageCount");
+    var total = document.getElementById("total");
 
+    function judge() {
+        if (pageCount.innerHTML != "1") {
+            document.getElementById("Previous").disabled = false;
+        } else {
+            document.getElementById("Previous").disabled = "disabled";
+        }
+        if (pageCount.innerText == total.innerText) {
+            document.getElementById("Next").disabled = "disabled";
+        } else {
+            document.getElementById("Next").disabled = false;
+        }
+        if (total.innerHTML == "0") {
+            document.getElementById("Next").disabled = "disabled";
+        }
+    }
+
+    if (pageCount.innerHTML == "1") {
+        document.getElementById("Previous").disabled = "disabled";
+    }
+    if (total.innerHTML == "0") {
+        document.getElementById("Next").disabled = "disabled";
+    }
+    if (pageCount.innerText == total.innerText) {
+        document.getElementById("Next").disabled = "disabled";
+    }
 </script>
 </html>
