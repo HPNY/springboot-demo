@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta content="text/html;charset=UTF-8"/>
-    <title>角色管理</title>
+    <title>数据字典管理</title>
     <script src="/jquery-1.8.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/Global.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,8 +20,10 @@
             <ul class="nav navbar-nav">
                 <li><a href="/index"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
                 <li><a href="/user/user_list"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
-                <li class="active"><a href="/role/role_list"><span class="glyphicon glyphicon-tag"></span>
+                <li><a href="/role/role_list"><span class="glyphicon glyphicon-tag"></span>
                     角色管理</a></li>
+                <li class="active"><a href="/role/role_list"><span class="glyphicon glyphicon-book"></span>
+                    数据字典管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <form action="/logout" method="post">
@@ -32,50 +34,49 @@
     </div>
 </nav>
 <div class="container">
-    <form name="contain" method="post" action="/role/containing">
-        <div class="starter-template">
-            <table class="table table-striped">
-                <caption class="col-md-offset-11">
-                    <a href="/role/role_add">
-                        <span class="glyphicon glyphicon-plus"></span>添加新角色
-                    </a>
-                </caption>
-                <div class="col-md-offset-9">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="根据角色名搜索">
-                        <span class="input-group-btn">
+    <div class="starter-template">
+        <table class="table table-striped">
+            <caption class="col-md-offset-11">
+                <a href="/role/role_add">
+                    <span class="glyphicon glyphicon-plus"></span>添加新角色
+                </a>
+            </caption>
+            <div class="col-md-offset-9">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="根据角色名搜索">
+                    <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" id="search">
                                     搜索
                                 </button>
                         </span>
-                    </div>
-                    <!-- /input-group -->
                 </div>
-                <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>角色名</td>
-                    <td>描述</td>
-                    <td>操作</td>
-                </tr>
-                </thead>
-                <tbody>
+            </div>
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>角色名</td>
+                <td>描述</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
 
-                </tbody>
-            </table>
-            <ul class="pager">
-                <li>
-                    <button type="button" id="Previous" class="btn btn-default" onclick="turning(-1)">&larr; Previous
-                    </button>
-                </li>
-                <li>当前是第<span id="pageCount" style="border: none"/>页/总<span id="total" style="border: none"/>页
-                </li>
-                <li>
-                    <button type="button" id="Next" class="btn btn-default" onclick="turning(1)">Next &rarr;</button>
-                </li>
-            </ul>
-        </div>
-    </form>
+            </tbody>
+        </table>
+        <ul class="pager">
+            <li>
+                <button type="button" id="Previous" class="btn btn-default" onclick="turning(-1)">&larr; Previous
+                </button>
+            </li>
+            <li>当前是第<span id="pageCount" th:text="${pageCount}" style="border: none"/>页/总<span id="total"
+                                                                                               th:text="${total}"
+                                                                                               style="border: none"/>页
+            </li>
+            <li>
+                <button type="button" id="Next" class="btn btn-default" onclick="turning(1)">Next &rarr;</button>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="/Global.js"></script>
@@ -162,12 +163,12 @@
 
     $("#search").click(function () {
         $.ajax({
-            url:'/role/containing',
-            type:'GET',
-            data:{
-                name:$("#name").val(),
+            url: '/role/containing',
+            type: 'GET',
+            data: {
+                name: $("#name").val(),
             },
-            success:function (result) {
+            success: function (result) {
                 $(".detail").remove();
                 var pageCount = result.number + 1;
                 var totalPage = result.totalPages;

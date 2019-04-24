@@ -26,53 +26,38 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/}"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-                <li><a th:href="@{/user/user_list}"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
-                <li><a th:href="@{/role/role_list}"><span class="glyphicon glyphicon-tag"></span> 角色管理</a></li>
+                <li><a href="/index"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                <li><a href="/user/user_list"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
+                <li><a href="/role/role_list"><span class="glyphicon glyphicon-tag"></span> 角色管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <form th:action="@{/logout}" method="post">
+                <form action="/logout" method="post">
                     <input type="submit" class="btn btn-link" style="padding-top: 14px" value="注销"/>
                 </form>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        个人中心 <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a th:href="@{/message}"><span class="glyphicon glyphicon-file"></span> 个人信息</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a></li>
-                    </ul>
-                </li>
-            </ul>
         </div>
-
     </div>
 </nav>
 <div class="container">
-    <form name="form" action="/user/user" method="POST">
-        <div class="starter-template">
-            <input type="hidden" th:value="${id}" id="idNo" name="idNo">
-            <label>选择角色</label>
-            <div class="checkbox">
-                <label><input type="checkbox" value="1" name="role" id="ROLE_administrator">超级管理员</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="2" name="role" id="ROLE_admin">管理员</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="3" name="role" id="ROLE_normal">普通用户</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="4" name="role" id="ROLE_limit">限制用户</label>
-            </div>
+    <div class="starter-template">
+        <input type="hidden" th:value="${id}" id="idNo" name="idNo">
+        <label>选择角色</label>
+        <div class="checkbox">
+            <label><input type="checkbox" value="1" name="role" id="ROLE_administrator">超级管理员</label>
         </div>
-        <div style="margin: 0 auto;display: table;">
-            <button type="button" id="change" class="btn btn-default btn-sm" style="margin-top:10px">提交</button>
+        <div class="checkbox">
+            <label><input type="checkbox" value="2" name="role" id="ROLE_admin">管理员</label>
         </div>
-    </form>
+        <div class="checkbox">
+            <label><input type="checkbox" value="3" name="role" id="ROLE_normal">普通用户</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="4" name="role" id="ROLE_limit">限制用户</label>
+        </div>
+    </div>
+    <div style="margin: 0 auto;display: table;">
+        <button type="button" id="change" class="btn btn-default btn-sm" style="margin-top:10px">提交</button>
+    </div>
 </div>
 </body>
 <script>
@@ -112,13 +97,13 @@
         $.ajax({
             url: '/user/user',
             type: 'POST',
-            traditional:true,
+            traditional: true,
             data: {
                 role: mycheck,
                 idNo: $("#idNo").val(),
             },
-            success:function (result) {
-                if(result=='success'){
+            success: function (result) {
+                if (result == 'success') {
                     window.location.href = "/user/user_list";
                 }
             }
