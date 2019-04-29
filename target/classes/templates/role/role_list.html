@@ -20,8 +20,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="/index"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
                 <li><a href="/user/user_list"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
-                <li class="active"><a href="/role/role_list"><span class="glyphicon glyphicon-tag"></span>
-                    角色管理</a></li>
+                <li class="active"><a href="/role/role_list"><span class="glyphicon glyphicon-tag"></span> 角色管理</a></li>
+                <li><a href="/dictionary/dictionary_list"><span class="glyphicon glyphicon-book"></span> 数据字典管理</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <form action="/logout" method="post">
@@ -34,7 +34,7 @@
 <div class="container">
     <form name="contain" method="post" action="/role/containing">
         <div class="starter-template">
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered">
                 <caption class="col-md-offset-11">
                     <a href="/role/role_add">
                         <span class="glyphicon glyphicon-plus"></span>添加新角色
@@ -68,7 +68,7 @@
                     <button type="button" id="Previous" class="btn btn-default" onclick="turning(-1)">&larr; Previous
                     </button>
                 </li>
-                <li>当前是第<span id="pageCount" style="border: none"/>页/总<span id="total" style="border: none"/>页
+                <li>当前是第<span id="pageCount" style="border: none"></span>页/总<span id="total" style="border: none"></span>页
                 </li>
                 <li>
                     <button type="button" id="Next" class="btn btn-default" onclick="turning(1)">Next &rarr;</button>
@@ -114,7 +114,7 @@
             url: "/role/list",
             data: {
                 pageCount: nowpage,
-                containing: $("#name").val()
+                containing: $("#name").val(),
             },
             success: function (result) {
                 $(".detail").remove();

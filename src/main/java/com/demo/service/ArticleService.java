@@ -1,8 +1,10 @@
 package com.demo.service;
 
 import com.demo.dao.ArticleRepository;
+import com.demo.dao.AwesomeRepository;
 import com.demo.dao.CollectRepository;
 import com.demo.entity.Article;
+import com.demo.entity.Awesome;
 import com.demo.entity.Collect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +30,9 @@ public class ArticleService {
 
     @Autowired
     private CollectRepository collectRepository;
+
+    @Autowired
+    private AwesomeRepository awesomeRepository;
 
 
     public Article addArticle(Article article) {
@@ -90,6 +95,19 @@ public class ArticleService {
         List<Integer> ArticleId=new ArrayList<>();
         for (Collect collect:list){
             ArticleId.add(collect.getArticleId());
+        }
+        List<Article> articleList=new ArrayList<>();
+        for (Integer temp:ArticleId){
+            articleList.add(articleRepository.findById(temp).orElse(null));
+        }
+        return articleList;
+    }
+
+    public List<Article> findAllAwesomeArticle(Integer userId){
+        List<Awesome> list=awesomeRepository.findAllByUserId(userId);
+        List<Integer> ArticleId=new ArrayList<>();
+        for (Awesome awesome:list){
+            ArticleId.add(awesome.getArticleId());
         }
         List<Article> articleList=new ArrayList<>();
         for (Integer temp:ArticleId){

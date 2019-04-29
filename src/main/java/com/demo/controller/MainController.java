@@ -114,4 +114,17 @@ public class MainController {
         return "/user/user_add";
     }
 
+    @RequestMapping("/dictionary/dictionary_list")
+    public String dictionaryList(){
+        return "/dictionary/dictionary_list";
+    }
+    @RequestMapping("/reception/message")
+    public String Message(){
+        return "/reception/message";
+    }
+    @RequestMapping("/reception/awesome")
+    public String awesome(){
+        return "/reception/awesome";
+    }
+
 }

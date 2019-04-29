@@ -42,7 +42,7 @@
     <div class="col-lg-offset-1 col-lg-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                个人文章列表
+                个人点赞列表
             </div>
             <div class="panel-body">
                 <ul id="List">
@@ -63,7 +63,7 @@
 </footer>
 <script>
     $.ajax({
-        url: '/reception/myArticle',
+        url: '/reception/findAllAwesome',
         type: 'GET',
         success: function (result) {
             if (result.length != 0) {

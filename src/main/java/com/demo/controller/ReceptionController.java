@@ -116,6 +116,13 @@ public class ReceptionController {
         return list;
     }
 
+    @RequestMapping("/reception/findAllAwesome")
+    public List findAllAwesome() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Article> list = articleService.findAllAwesomeArticle(user.getId());
+        return list;
+    }
+
 }
 
 

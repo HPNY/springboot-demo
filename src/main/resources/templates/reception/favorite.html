@@ -20,6 +20,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="/reception/index"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="/reception/message"><span class="glyphicon glyphicon-comment"></span> 讨论</a></li>
+            </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <form action="/reception/logout" method="post">
@@ -51,19 +54,18 @@
 </div>
 
 </body>
-</body>
 <footer class="footer">
     <div class="container">
         <span class="text-muted">Place sticky footer content here.</span>
-        <button type="button" class="btn btn-default" style="float: right;margin-top: 10px" id="top"><span class="glyphicon glyphicon-arrow-up"></span></button>
+        <button type="button" class="btn btn-default" style="float: right;margin-top: 10px" id="top"><span
+                class="glyphicon glyphicon-arrow-up"></span></button>
     </div>
 </footer>
 <script>
     $.ajax({
         url: '/reception/findAllCollect',
         type: 'GET',
-        data: {
-        },
+        data: {},
         success: function (result) {
             if (result.length != 0) {
                 for (var i = 0; i < result.length; i++) {
@@ -77,6 +79,7 @@
             }
         }
     })
+
     function appendData(id, title, category, createTime, introduction) {
         var text = '<li class="articleList">' +
             '<a href="/reception/findById/?id=' + id + '"><h3>' + title + '</h3></a>' +
@@ -87,6 +90,7 @@
 
         $("#List").append(text);
     }
+
     $("#top").click(function () {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     })

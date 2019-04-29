@@ -68,7 +68,7 @@
                     <button type="button" id="Previous" class="btn btn-default" onclick="turning(-1)">&larr; Previous
                     </button>
                 </li>
-                <li>当前是第<span id="pageCount" style="border: none"/>页/总<span id="total" style="border: none"/>页
+                <li>当前是第<span id="pageCount" style="border: none"></span>页/总<span id="total" style="border: none"></span>页
                 </li>
                 <li>
                     <button type="button" id="Next" class="btn btn-default" onclick="turning(1)">Next &rarr;</button>
@@ -114,7 +114,7 @@
             url: "/role/list",
             data: {
                 pageCount: nowpage,
-                containing: $("#name").val()
+                containing: $("#name").val(),
             },
             success: function (result) {
                 $(".detail").remove();
