@@ -53,6 +53,7 @@ public class Comment {
     public void setMain(String main) {
         this.main = main;
     }
+
     public Integer getArticleId() {
         return articleId;
     }

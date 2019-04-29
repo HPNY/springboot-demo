@@ -10,6 +10,7 @@ public class Collect {
     private Integer id;
 
     private Integer userId;
+
     private Integer articleId;
 
     public Collect() {

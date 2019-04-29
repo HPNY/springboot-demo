@@ -10,12 +10,19 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String title;
+
     private String introduction;
+
     private String mainText;
+
     private String category;
+
     private String author;
+
     private String createTime;
+
     private Integer flag;
 
     @OneToMany(cascade = {CascadeType.ALL})
@@ -33,8 +40,8 @@ public class Article {
         this.mainText = mainText;
         this.category = category;
         Date date = new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.createTime=sdf.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.createTime = sdf.format(date);
 
     }
 
@@ -45,8 +52,8 @@ public class Article {
         this.mainText = mainText;
         this.category = category;
         Date date = new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.createTime=sdf.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.createTime = sdf.format(date);
     }
 
     public Integer getId() {

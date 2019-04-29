@@ -10,6 +10,7 @@ public class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
 
     public Dictionary() {
