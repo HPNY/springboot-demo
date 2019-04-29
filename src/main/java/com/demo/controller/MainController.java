@@ -115,16 +115,28 @@ public class MainController {
     }
 
     @RequestMapping("/dictionary/dictionary_list")
-    public String dictionaryList(){
+    public String dictionaryList() {
         return "/dictionary/dictionary_list";
     }
+
     @RequestMapping("/reception/message")
-    public String Message(){
+    public String Message() {
         return "/reception/message";
     }
+
     @RequestMapping("/reception/awesome")
-    public String awesome(){
+    public String awesome() {
         return "/reception/awesome";
+    }
+
+    @RequestMapping("/message/message_list")
+    public String message() {
+        return "/message/message_list";
+    }
+
+    @RequestMapping("/article/article_list")
+    public String article() {
+        return "/article/article_list";
     }
 
 }

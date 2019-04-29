@@ -45,17 +45,17 @@
         <div class="form-group">
             <label>类别</label>
             <select id="option" class="selectpicker" data-size="4" title="请选择一项">
-                <option value="NET">NET</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="JQuery">JQuery</option>
-                <option value="AngularJS">AngularJS</option>
-                <option value="Node.js">Nodejs</option>
-                <option value="正则表达式">正则表达式</option>
-                <option value="CSS">CSS</option>
-                <option value="NoSql">NoSql</option>
-                <option value="操作系统">操作系统</option>
-                <option value="其他">其他</option>
-                <option value="J2EE">J2EE</option>
+                <!--<option value="NET">NET</option>-->
+                <!--<option value="JavaScript">JavaScript</option>-->
+                <!--<option value="JQuery">JQuery</option>-->
+                <!--<option value="AngularJS">AngularJS</option>-->
+                <!--<option value="Node.js">Nodejs</option>-->
+                <!--<option value="正则表达式">正则表达式</option>-->
+                <!--<option value="CSS">CSS</option>-->
+                <!--<option value="NoSql">NoSql</option>-->
+                <!--<option value="操作系统">操作系统</option>-->
+                <!--<option value="其他">其他</option>-->
+                <!--<option value="J2EE">J2EE</option>-->
             </select>
         </div>
         <div class="form-group">
@@ -86,6 +86,17 @@
     editor1.customConfig.uploadImgShowBase64 = true;  // 使用 base64 保存图片
     editor1.create();
 
+    $.ajax({
+        url: '/dictionary/findall',
+        type: 'POST',
+        success: function (result) {
+            for (var i = 0; i < result.length; i++) {
+                var name = result[i].name;
+                appendData(name)
+            }
+        }
+    })
+
     $("#submit").click(function () {
         $.ajax({
             url: '/reception/addArticle',
@@ -103,6 +114,11 @@
             }
         })
     })
+
+    function appendData(name) {
+        var text = '<option value="' + name + '">' + name + '</option>'
+        $("select").append(text);
+    }
 </script>
 </body>
 <footer class="footer">

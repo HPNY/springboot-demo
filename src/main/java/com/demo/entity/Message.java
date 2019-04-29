@@ -15,16 +15,26 @@ public class Message {
 
     private String username;
 
-    private String userId;
+    private Integer userId;
 
     private String content;
 
     private String createTime;
 
     public Message() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.createTime = sdf.format(date);
     }
 
-    public Message(String username, String userId, String content) {
+    public Message(String content) {
+        this.content = content;
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.createTime = sdf.format(date);
+    }
+
+    public Message(String username, Integer userId, String content) {
         this.username = username;
         this.userId = userId;
         this.content = content;
@@ -33,7 +43,7 @@ public class Message {
         this.createTime = sdf.format(date);
     }
 
-    public Message(Integer id, String username, String userId, String content) {
+    public Message(Integer id, String username, Integer userId, String content) {
         this.id = id;
         this.username = username;
         this.userId = userId;
@@ -59,11 +69,11 @@ public class Message {
         this.username = username;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

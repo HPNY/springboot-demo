@@ -1,7 +1,9 @@
 package com.demo.service;
 
 import com.demo.dao.MessageRepository;
+import com.demo.dao.UserRepository;
 import com.demo.entity.Message;
+import com.demo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +20,13 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    public Message addMessage(Message message) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public Message addMessage(Message message,Integer userId) {
+        User user=userRepository.findById(userId).orElse(null);
+        message.setUserId(user.getId());
+        message.setUsername(user.getUsername());
         return messageRepository.save(message);
     }
 
@@ -30,5 +38,11 @@ public class MessageService {
         Sort sort = new Sort(Sort.Direction.ASC, sortProperties);
         Pageable pageable = PageRequest.of(pageCount, pageSize, sort);
         return messageRepository.findAll(pageable);
+    }
+
+    public Page<Message> findAllByContentContaining(String content, Integer pageCount) {
+        Sort sort = new Sort(Sort.Direction.ASC, sortProperties);
+        Pageable pageable = PageRequest.of(pageCount, pageSize, sort);
+        return messageRepository.findAllByContentContaining(content, pageable);
     }
 }

@@ -23,6 +23,8 @@ public class ArticleService {
 
     public static final int pageSize = 5;
 
+    public static final int Backstage = 10;
+
     public static final String sortProperties = "id";
 
     @Autowired
@@ -52,8 +54,8 @@ public class ArticleService {
 
     public void deleteArticle(Integer id) {
         articleRepository.deleteById(id);
-        List<Collect> list=collectRepository.findAllByArticleId(id);
-        for (Collect collect:list){
+        List<Collect> list = collectRepository.findAllByArticleId(id);
+        for (Collect collect : list) {
             collectRepository.delete(collect);
         }
     }
@@ -86,33 +88,45 @@ public class ArticleService {
         return articleRepository.findAllByCategoryAndTitleContaining(pageable, category, title);
     }
 
-    public List<Article> findAllByAuthor(String author){
+    public List<Article> findAllByAuthor(String author) {
         return articleRepository.findAllByAuthor(author);
     }
 
-    public List<Article> findCollectArticle(Integer userId){
-        List<Collect> list=collectRepository.findAllByUserId(userId);
-        List<Integer> ArticleId=new ArrayList<>();
-        for (Collect collect:list){
+    public List<Article> findCollectArticle(Integer userId) {
+        List<Collect> list = collectRepository.findAllByUserId(userId);
+        List<Integer> ArticleId = new ArrayList<>();
+        for (Collect collect : list) {
             ArticleId.add(collect.getArticleId());
         }
-        List<Article> articleList=new ArrayList<>();
-        for (Integer temp:ArticleId){
+        List<Article> articleList = new ArrayList<>();
+        for (Integer temp : ArticleId) {
             articleList.add(articleRepository.findById(temp).orElse(null));
         }
         return articleList;
     }
 
-    public List<Article> findAllAwesomeArticle(Integer userId){
-        List<Awesome> list=awesomeRepository.findAllByUserId(userId);
-        List<Integer> ArticleId=new ArrayList<>();
-        for (Awesome awesome:list){
+    public List<Article> findAllAwesomeArticle(Integer userId) {
+        List<Awesome> list = awesomeRepository.findAllByUserId(userId);
+        List<Integer> ArticleId = new ArrayList<>();
+        for (Awesome awesome : list) {
             ArticleId.add(awesome.getArticleId());
         }
-        List<Article> articleList=new ArrayList<>();
-        for (Integer temp:ArticleId){
+        List<Article> articleList = new ArrayList<>();
+        for (Integer temp : ArticleId) {
             articleList.add(articleRepository.findById(temp).orElse(null));
         }
         return articleList;
+    }
+
+    public Page<Article> backstageFindAllArticle(Integer pageCount) {
+        Sort sort = new Sort(Sort.Direction.ASC, sortProperties);
+        Pageable pageable = PageRequest.of(pageCount, Backstage, sort);
+        return articleRepository.findAll(pageable);
+    }
+
+    public Page<Article> backstageFindAllByTitleContaining(String title, Integer pageCount) {
+        Sort sort = new Sort(Sort.Direction.ASC, sortProperties);
+        Pageable pageable = PageRequest.of(pageCount, Backstage, sort);
+        return articleRepository.findAllByTitleContaining(pageable, title);
     }
 }

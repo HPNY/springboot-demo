@@ -45,12 +45,12 @@
         <table style="width: 100%">
             <tr>
                 <td width="95%">
-                    <textarea id="comment" style="width: 100%;height: 80px"></textarea>
+                    <textarea id="message" style="width: 100%;height: 80px"></textarea>
                 </td>
             </tr>
             <tr>
                 <td width="90%" align="right">
-                    <button class="btn btn-info" id="addComment">发表留言</button>
+                    <button class="btn btn-info" id="addMessage">发表留言</button>
                 </td>
             </tr>
         </table>
@@ -59,7 +59,7 @@
         <h3>留言</h3>
     </div>
     <div>
-        <table id="commentTable" style="width: 100%">
+        <table id="messageTable" style="width: 100%">
 
         </table>
     </div>
@@ -85,4 +85,99 @@
                 class="glyphicon glyphicon-arrow-up"></span></button>
     </div>
 </footer>
+<script type="text/javascript" src="/Global.js"></script>
+<script>
+
+    var nowpage = 0;
+
+    $.ajax({
+        url: '/message/list',
+        type: 'GET',
+        data: {
+            pageCount: 0,
+        },
+        success: function (result) {
+            $("#messageList").remove();
+            var pageCount = result.number + 1;
+            var totalPage = result.totalPages;
+            if (pageCount > totalPage) {
+                pageCount = totalPage;
+            }
+            var list = result.content;
+            if (list.length != 0) {
+                for (var i = 0; i < list.length; i++) {
+                    var content = list[i].content;
+                    var username = list[i].username;
+                    var createTime = list[i].createTime;
+                    appendData(content, username, createTime);
+                }
+            }
+            $("#pageCount").text(pageCount);
+            $("#total").text(totalPage);
+            judge();
+
+        }
+    })
+
+    function turning(i) {
+        nowpage += i;
+        $.ajax({
+            url: '/message/list',
+            type: 'GET',
+            data: {
+                pageCount: nowpage,
+            },
+            success: function (result) {
+                $("#messageList").remove();
+                var pageCount = result.number + 1;
+                var totalPage = result.totalPages;
+                var list = result.content;
+                if (list.length != 0) {
+                    for (var i = 0; i < list.length; i++) {
+                        var content = list[i].content;
+                        var username = list[i].username;
+                        var createTime = list[i].createTime;
+                        appendData(content, username, createTime);
+                    }
+                }
+                $("#pageCount").text(pageCount);
+                $("#total").text(totalPage);
+                judge();
+
+            }
+        })
+    }
+
+    $("#addMessage").click(function () {
+        $.ajax({
+            url: '/message/add',
+            type: 'GET',
+            data: {
+                content: $("#message").val(),
+            },
+            success: function (result) {
+                if (result == 'success') {
+                    window.location.href = "/reception/message";
+                }
+            }
+        })
+    })
+
+    function appendData(content, username, createTime) {
+        var text = '<tr id="messageList" style="border-bottom: 1px solid rgb(238,238,238);">' +
+            '<td width="10%" align="center">' +
+            '<br/>' +
+            '<span style="font-weight:bold">' + username + '</span><br/><br/>' +
+            '</td>' +
+            '<td width="70%">' +
+            '<div>' + content + '</div>' +
+            '</td>' +
+            '<td align="right">' +
+            '<div style="font-style: italic">' + createTime + '</div>' +
+            '</td>' +
+            '</tr>';
+
+        $("#messageTable").append(text);
+    }
+</script>
 </html>

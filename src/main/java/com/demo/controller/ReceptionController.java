@@ -110,17 +110,31 @@ public class ReceptionController {
     }
 
     @RequestMapping("/reception/findAllCollect")
-    public List findAllCollect() {
+    public List<Article> findAllCollect() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Article> list = articleService.findCollectArticle(user.getId());
         return list;
     }
 
     @RequestMapping("/reception/findAllAwesome")
-    public List findAllAwesome() {
+    public List<Article> findAllAwesome() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Article> list = articleService.findAllAwesomeArticle(user.getId());
         return list;
+    }
+
+    @RequestMapping("/article/list")
+    public Page<Article> findAllArticle(String title, Integer pageCount) {
+        if (title == null) {
+            return articleService.backstageFindAllArticle(pageCount);
+        }
+        return articleService.backstageFindAllByTitleContaining(title, pageCount);
+    }
+
+    @RequestMapping("/article/delete")
+    public String articleDelete(Integer id) {
+        articleService.deleteArticle(id);
+        return "success";
     }
 
 }

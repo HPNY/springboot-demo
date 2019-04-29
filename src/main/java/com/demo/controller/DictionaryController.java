@@ -33,10 +33,6 @@ public class DictionaryController {
         return "success";
     }
 
-    public Page<Dictionary> selectDictionary(Integer pageCount) {
-        return dictionaryService.selectDictionary(pageCount);
-    }
-
     @RequestMapping("/dictionary/list")
     public Page<Dictionary> findAllByName(String name, Integer pageCount) {
         if (name != null) {
@@ -45,7 +41,10 @@ public class DictionaryController {
         return dictionaryService.selectDictionary(pageCount);
     }
 
+    @RequestMapping("/dictionary/findall")
     public List<Dictionary> findAll() {
-        return dictionaryService.findAll();
+        List<Dictionary> list = dictionaryService.findAll();
+        System.out.println(list);
+        return list;
     }
 }

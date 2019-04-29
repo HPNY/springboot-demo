@@ -44,17 +44,17 @@
                 <h4>文章分类</h4>
             </li>
             <a onclick="change('全部分类')" class="list-group-item active" id="全部分类">全部分类</a>
-            <a onclick="change('NET')" class="list-group-item" id="NET">NET</a>
-            <a onclick="change('JavaScript')" class="list-group-item" id="JavaScript">JavaScript</a>
-            <a onclick="change('JQuery')" class="list-group-item" id="JQuery">JQuery</a>
-            <a onclick="change('AngularJS')" class="list-group-item" id="AngularJS">AngularJS</a>
-            <a onclick="change('Nodejs')" class="list-group-item" id="Nodejs">Node.js</a>
-            <a onclick="change('正则表达式')" class="list-group-item" id="正则表达式">正则表达式</a>
-            <a onclick="change('CSS')" class="list-group-item" id="CSS">CSS</a>
-            <a onclick="change('NoSql')" class="list-group-item" id="NoSql">NoSql</a>
-            <a onclick="change('操作系统')" class="list-group-item" id="操作系统">操作系统</a>
-            <a onclick="change('其他')" class="list-group-item" id="其他">其他</a>
-            <a onclick="change('J2EE')" class="list-group-item" id="J2EE">J2EE</a>
+            <!--<a onclick="change('NET')" class="list-group-item" id="NET">NET</a>-->
+            <!--<a onclick="change('JavaScript')" class="list-group-item" id="JavaScript">JavaScript</a>-->
+            <!--<a onclick="change('JQuery')" class="list-group-item" id="JQuery">JQuery</a>-->
+            <!--<a onclick="change('AngularJS')" class="list-group-item" id="AngularJS">AngularJS</a>-->
+            <!--<a onclick="change('Nodejs')" class="list-group-item" id="Nodejs">Node.js</a>-->
+            <!--<a onclick="change('正则表达式')" class="list-group-item" id="正则表达式">正则表达式</a>-->
+            <!--<a onclick="change('CSS')" class="list-group-item" id="CSS">CSS</a>-->
+            <!--<a onclick="change('NoSql')" class="list-group-item" id="NoSql">NoSql</a>-->
+            <!--<a onclick="change('操作系统')" class="list-group-item" id="操作系统">操作系统</a>-->
+            <!--<a onclick="change('其他')" class="list-group-item" id="其他">其他</a>-->
+            <!--<a onclick="change('J2EE')" class="list-group-item" id="J2EE">J2EE</a>-->
 
         </ul>
     </div>
@@ -100,6 +100,17 @@
 <script type="text/javascript" src="/Global.js"></script>
 <script>
     var nowpage = 0;
+
+    $.ajax({
+        url: '/dictionary/findall',
+        type: 'POST',
+        success: function (result) {
+            for (var i = 0; i < result.length; i++) {
+                var name = result[i].name;
+                appendList(name)
+            }
+        }
+    })
 
     $("#search").click(function () {
         $.ajax({
@@ -221,5 +232,9 @@
         $("#List").append(text);
     }
 
+    function appendList(name) {
+        var text = '<a onclick="change(\'' + name + '\')" class="list-group-item" id="' + name + '">' + name + '</a>'
+        $(".list-group").append(text);
+    }
 </script>
 </html>
