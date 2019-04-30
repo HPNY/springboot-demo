@@ -25,11 +25,11 @@ public class Article {
 
     private Integer flag;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<Comment> commentList;
-
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<Awesome> awesomeList;
+//    @OneToMany(cascade = {CascadeType.ALL})
+//    private List<Comment> commentList;
+//
+//    @OneToMany(cascade = {CascadeType.ALL})
+//    private List<Awesome> awesomeList;
 
     public Article() {
     }
@@ -96,13 +96,13 @@ public class Article {
         this.category = category;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
+//    public List<Comment> getCommentList() {
+//        return commentList;
+//    }
+//
+//    public void setCommentList(List<Comment> commentList) {
+//        this.commentList = commentList;
+//    }
 
     public String getAuthor() {
         return author;
@@ -128,11 +128,11 @@ public class Article {
         this.flag = flag;
     }
 
-    public List<Awesome> getAwesomeList() {
-        return awesomeList;
-    }
-
-    public void setAwesomeList(List<Awesome> awesomeList) {
-        this.awesomeList = awesomeList;
-    }
+//    public List<Awesome> getAwesomeList() {
+//        return awesomeList;
+//    }
+//
+//    public void setAwesomeList(List<Awesome> awesomeList) {
+//        this.awesomeList = awesomeList;
+//    }
 }
