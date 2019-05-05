@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8"/>
     <title>修改文章</title>
     <link rel="stylesheet" type="text/css" href="/Global.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -25,12 +25,12 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <form action="/reception/logout" method="post">
-                    <input type="submit" class="btn btn-link" style="padding-top: 14px" value="注销" />
+                    <input type="submit" class="btn btn-link" style="padding-top: 14px" value="注销"/>
                 </form>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <form action="/reception/personal" method="post">
-                    <input type="submit" class="btn btn-link" style="padding-top: 14px" value="个人信息" />
+                    <input type="submit" class="btn btn-link" style="padding-top: 14px" value="个人信息"/>
                 </form>
             </ul>
         </div>
@@ -46,18 +46,7 @@
         </div>
         <div class="form-group">
             <label>类别</label>
-            <select class="selectpicker" data-size="4" id="option" title="请选择一项">
-                <option value=".NET">.NET</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="JQuery">JQuery</option>
-                <option value="AngularJS">AngularJS</option>
-                <option value="Node.js">Node.js</option>
-                <option value="正则表达式">正则表达式</option>
-                <option value="CSS">CSS</option>
-                <option value="NoSql">NoSql</option>
-                <option value="操作系统">操作系统</option>
-                <option value="其他">其他</option>
-            </select>
+            <select class="selectpicker" data-size="4" id="option" title="请选择一项"></select>
         </div>
         <div class="form-group">
             <label for="introduction">简介</label>
@@ -95,50 +84,66 @@
 </footer>
 <script>
     $.ajax({
-        url:'/reception/findArticle',
-        type:'GET',
-        data:{id:$("#articleId").val()},
-        success:function (result) {
+        url: '/reception/findArticle',
+        type: 'GET',
+        data: {id: $("#articleId").val()},
+        success: function (result) {
             $("#title").val(result.title);
             $("#option").val(result.category);
             $("#introduction").val(result.introduction);
             editor1.txt.html(result.mainText);
         }
-        
+
+    })
+
+    $.ajax({
+        url: '/dictionary/findall',
+        type: 'POST',
+        success: function (result) {
+            for (var i = 0; i < result.length; i++) {
+                var name = result[i].name;
+                appendData(name)
+            }
+        }
     })
 
     $("#submit").click(function () {
         $.ajax({
-            url:'/reception/updateArticle',
-            type:'GET',
-            data:{
-                id:$("#articleId").val(),
-                title:$("#title").val(),
-                category:$("#option").val(),
-                introduction:$("#introduction").val(),
-                mainText:editor1.txt.html()
+            url: '/reception/updateArticle',
+            type: 'GET',
+            data: {
+                id: $("#articleId").val(),
+                title: $("#title").val(),
+                category: $("#option").val(),
+                introduction: $("#introduction").val(),
+                mainText: editor1.txt.html()
             },
-            success:function (result) {
-                if (result=='success'){
-                    window.location.href="/reception/index";
+            success: function (result) {
+                if (result == 'success') {
+                    window.location.href = "/reception/index";
                 }
             }
         })
     })
-    
+
     $("#deleteArticle").click(function () {
         $.ajax({
-            url:'/reception/deleteArticle',
-            type:'GET',
-            data:{
-                id:$("#articleId").val(),
+            url: '/reception/deleteArticle',
+            type: 'GET',
+            data: {
+                id: $("#articleId").val(),
             },
-            success:function (result) {
-                if (result=='success'){
-                    window.location.href="/reception/index";
+            success: function (result) {
+                if (result == 'success') {
+                    window.location.href = "/reception/index";
                 }
             }
         })
     })
+
+    function appendData(name) {
+        var text = '<option value="' + name + '">' + name + '</option>'
+        $("select").append(text);
+    }
 </script>
 </html>

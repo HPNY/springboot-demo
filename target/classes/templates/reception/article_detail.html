@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8"/>
     <title>主页</title>
     <link rel="stylesheet" type="text/css" href="/Global.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -97,7 +97,7 @@
             <button type="button" id="Previous" class="btn btn-default" onclick="turning(-1)">&larr; Previous
             </button>
         </li>
-        <li>当前是第<span id="pageCount" style="border: none"/>页/总<span id="total" style="border: none"/>页
+        <li>当前是第<span id="pageCount" style="border: none"></span>页/总<span id="total" style="border: none"></span>页
         </li>
         <li>
             <button type="button" id="Next" class="btn btn-default" onclick="turning(1)">Next &rarr;</button>
@@ -225,6 +225,9 @@
                 $("#commentList").remove();
                 var pageCount = result.number + 1;
                 var totalPage = result.totalPages;
+                if (pageCount > totalPage) {
+                    pageCount = totalPage;
+                }
                 var list = result.content;
                 if (list.length != 0) {
                     for (var i = 0; i < list.length; i++) {
