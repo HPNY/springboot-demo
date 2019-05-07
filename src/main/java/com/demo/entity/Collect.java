@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 @Entity
 public class Collect {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

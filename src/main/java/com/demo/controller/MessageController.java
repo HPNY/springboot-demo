@@ -15,19 +15,38 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    /**
+     * 新增留言
+     *
+     * @param message
+     * @return
+     */
     @RequestMapping("/message/add")
     public String addMessage(Message message) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        messageService.addMessage(message,user.getId());
+        messageService.addMessage(message, user.getId());
         return "success";
     }
 
+    /**
+     * 后台删除留言
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping("/message/delete")
     public String deleteMessage(Integer id) {
         messageService.deleteMessage(id);
         return "success";
     }
 
+    /**
+     * 显示所有留言
+     *
+     * @param content
+     * @param pageCount
+     * @return
+     */
     @RequestMapping("/message/list")
     public Page<Message> findAllMessage(String content, Integer pageCount) {
         if (content == null) {

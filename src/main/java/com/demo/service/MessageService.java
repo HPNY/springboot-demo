@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MessageService {
+
     public static final int pageSize = 10;
 
     public static final String sortProperties = "id";

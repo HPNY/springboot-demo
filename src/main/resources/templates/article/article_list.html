@@ -144,7 +144,7 @@
 
     function deleteArticle(i) {
         $.ajax({
-            url: '/article/delete',
+            url: '/reception/deleteArticle',
             type: 'POST',
             data: {
                 id: i
@@ -160,7 +160,7 @@
     $("#search").click(function () {
         $.ajax({
             type: "POST",
-            url: '/article/list',
+            url: '/reception/findall',
             data: {
                 pageCount: 0,
                 title: $("#name").val(),

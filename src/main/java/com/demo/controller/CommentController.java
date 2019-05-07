@@ -22,6 +22,13 @@ public class CommentController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 查询所有评论
+     *
+     * @param articleId
+     * @param pageCount
+     * @return
+     */
     @RequestMapping("/reception/findAllComment")
     public Page<Comment> findAllComment(Integer articleId, Integer pageCount) {
         if (pageCount == null) {
@@ -30,11 +37,23 @@ public class CommentController {
         return commentService.findAllComment(articleId, pageCount);
     }
 
+    /**
+     * 统计评论数
+     *
+     * @param articleId
+     * @return
+     */
     @RequestMapping("/reception/countComment")
     public Integer countComment(Integer articleId) {
         return commentService.conutComment(articleId);
     }
 
+    /**
+     * 新增评论
+     *
+     * @param comment
+     * @return
+     */
     @RequestMapping("/reception/addComment")
     public String addComment(Comment comment) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -46,6 +65,12 @@ public class CommentController {
         return "success";
     }
 
+    /**
+     * 删除评论
+     *
+     * @param comment
+     * @return
+     */
     @RequestMapping("/reception/deleteComment")
     public String deleteComment(Comment comment) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

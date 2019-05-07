@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AwesomeService {
+
     @Autowired
     private AwesomeRepository awesomeRepository;
 

@@ -6,5 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {
+
     Page<Message> findAllByContentContaining(String content, Pageable pageable);
 }

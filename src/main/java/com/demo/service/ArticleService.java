@@ -117,16 +117,4 @@ public class ArticleService {
         }
         return articleList;
     }
-
-    public Page<Article> backstageFindAllArticle(Integer pageCount) {
-        Sort sort = new Sort(Sort.Direction.ASC, sortProperties);
-        Pageable pageable = PageRequest.of(pageCount, Backstage, sort);
-        return articleRepository.findAll(pageable);
-    }
-
-    public Page<Article> backstageFindAllByTitleContaining(String title, Integer pageCount) {
-        Sort sort = new Sort(Sort.Direction.ASC, sortProperties);
-        Pageable pageable = PageRequest.of(pageCount, Backstage, sort);
-        return articleRepository.findAllByTitleContaining(pageable, title);
-    }
 }

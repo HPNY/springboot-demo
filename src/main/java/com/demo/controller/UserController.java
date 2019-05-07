@@ -153,6 +153,7 @@ public class UserController {
 
     /**
      * 分页跳转
+     *
      * @param pageCount
      * @param username
      * @return
@@ -217,6 +218,7 @@ public class UserController {
 
     /**
      * 用户更新密码
+     *
      * @param userId
      * @param password
      * @return
@@ -231,6 +233,7 @@ public class UserController {
 
     /**
      * 获取当前登录用户信息
+     *
      * @return
      */
     @RequestMapping("/reception/data")
@@ -242,6 +245,7 @@ public class UserController {
 
     /**
      * 用户更新头像
+     *
      * @param base64
      * @return
      */

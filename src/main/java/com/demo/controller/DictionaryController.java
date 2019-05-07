@@ -15,6 +15,12 @@ public class DictionaryController {
     @Autowired
     private DictionaryService dictionaryService;
 
+    /**
+     * 新增数据字典
+     *
+     * @param dictionary
+     * @return
+     */
     @RequestMapping("/dictionary/add")
     public String addDictionary(Dictionary dictionary) {
         dictionaryService.addDictionary(dictionary);

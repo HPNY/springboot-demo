@@ -16,6 +16,12 @@ public class CollectController {
     @Autowired
     private CollectService collectService;
 
+    /**
+     * 新增收藏
+     *
+     * @param collect
+     * @return
+     */
     @RequestMapping("/reception/addCollect")
     public String addCollect(Collect collect) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -24,6 +30,12 @@ public class CollectController {
         return "success";
     }
 
+    /**
+     * 取消收藏
+     *
+     * @param collect
+     * @return
+     */
     @RequestMapping("/reception/deleteCollect")
     public String deleteCollect(Collect collect) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -32,6 +44,12 @@ public class CollectController {
         return "success";
     }
 
+    /**
+     * 判断是否收藏
+     *
+     * @param articleId
+     * @return
+     */
     @RequestMapping("/reception/findCollect")
     public boolean findCollect(Integer articleId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

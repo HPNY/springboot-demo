@@ -24,14 +24,11 @@ public class CollectService {
         collectRepository.delete(collect);
     }
 
-
-
     public boolean findCollect(Integer userId,Integer articleId){
         if (collectRepository.findCollectByUserIdAndArticleId(userId,articleId)!=null){
             return true;
         }
         return false;
     }
-
 
 }

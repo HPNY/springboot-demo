@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 public class Article {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

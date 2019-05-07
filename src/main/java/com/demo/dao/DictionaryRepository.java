@@ -6,5 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DictionaryRepository extends JpaRepository<Dictionary,Integer> {
+
     Page<Dictionary> findAllByNameContaining(Pageable pageable,String name);
 }

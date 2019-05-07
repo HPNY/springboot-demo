@@ -36,6 +36,7 @@ public class MultiHttpSecurityConfiguration {
     @Configuration
     @Order(1)
     public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
+        @Override
         protected void configure(HttpSecurity http) throws Exception {
 
             http.authorizeRequests()
@@ -44,10 +45,10 @@ public class MultiHttpSecurityConfiguration {
 
             http.authorizeRequests()
                     .antMatchers("/reception/index", "/reception/findById", "/reception/addArticle",
-                            "/reception/personal", "/reception/changeInformation", "/reception/findall", "/reception/findAllByCategory","/reception/article_add"
-                    ,"/reception/findById","/reception/findArticle","/reception/update","/reception/updateArticle","/reception/deleteArticle"
-                    ,"/reception/findAllByTitle","/reception/Containing","/reception/updatepassword","/reception/addCollect","/reception/deleteCollect"
-                    ,"/reception/findAllCollect","/reception/findCollect","/reception/favorite","/reception/judge")
+                            "/reception/personal", "/reception/changeInformation", "/reception/findall", "/reception/findAllByCategory", "/reception/article_add"
+                            , "/reception/findById", "/reception/findArticle", "/reception/update", "/reception/updateArticle", "/reception/deleteArticle"
+                            , "/reception/findAllByTitle", "/reception/Containing", "/reception/updatepassword", "/reception/addCollect", "/reception/deleteCollect"
+                            , "/reception/findAllCollect", "/reception/findCollect", "/reception/favorite", "/reception/judge")
                     .hasRole("normal");
 
             http.csrf().disable();
@@ -84,8 +85,8 @@ public class MultiHttpSecurityConfiguration {
 
             //其他URI均需要权限校验
             http.authorizeRequests()
-                    .antMatchers("/user/user_list","/user/user_findoneuser","/user/user_update","/user/delete"
-                    ,"/user/list","/user/getuser","/user/containing","/user/findone","/user/user_list","/user/resetPassword")
+                    .antMatchers("/user/user_list", "/user/user_findoneuser", "/user/user_update", "/user/delete"
+                            , "/user/list", "/user/getuser", "/user/containing", "/user/findone", "/user/user_list", "/user/resetPassword")
                     .hasRole("admin");
 
             http.authorizeRequests()

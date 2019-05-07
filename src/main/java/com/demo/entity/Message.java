@@ -9,6 +9,7 @@ import java.util.Date;
 
 @Entity
 public class Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
